@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this assignment, we explore and compare various architectures based on the GPT-2 model for text classification tasks. The goal is to analyze the performance of different configurations and enhancements made to the base model, focusing on training and validation accuracy, loss metrics, and confusion matrices.
+In this assignment, we explore and compare various architectures based on the GPT-2 model for text classification tasks, specifically semantic classification using the SST-2 dataset. The goal is to analyze the performance of different configurations and enhancements made to the base model, focusing on training and validation accuracy, loss metrics, and confusion matrices.
 
 ## Goals
 
@@ -120,9 +120,37 @@ class GPT2_clss_rtl_attention(nn.Module):
         return logits
 ```
 
-## Conclusion
+## One-Shot Inference with Fine-Tuned BERT
 
-This assignment provides insights into how different architectural choices impact the performance of text classification tasks using transformer-based models. By systematically comparing these models, we can identify the most effective approaches for specific applications.
+In addition to the GPT-2 based models, we will also demonstrate one-shot inference using a fine-tuned BERT model on the SST-2 dataset. BERT has shown remarkable performance on various NLP tasks, including sentiment analysis.
+
+### Architecture
+
+The fine-tuned BERT model typically involves passing the input through a BERT tokenizer, obtaining the embeddings, and then passing them through a classification head.
+
+```python
+from transformers import BertTokenizer, BertForSequenceClassification
+import torch
+
+# Load fine-tuned BERT model and tokenizer
+tokenizer = BertTokenizer.from_pretrained('textattack/bert-base-uncased-SST-2')
+model = BertForSequenceClassification.from_pretrained('textattack/bert-base-uncased-SST-2')
+
+# Function for one-shot inference
+def one_shot_inference(text):
+    inputs = tokenizer(text, return_tensors="pt", padding=True, truncation=True)
+    with torch.no_grad():
+        logits = model(**inputs).logits
+    predicted_class = torch.argmax(logits, dim=1).item()
+    return predicted_class
+
+# Example usage
+text_sample = "This movie was fantastic!"
+prediction = one_shot_inference(text_sample)
+print(f"Predicted class: {prediction}")
 ```
 
-You can copy and paste this Markdown text into a `.md` file on your GitHub repository. Let me know if you need any further modifications!
+## Conclusion
+
+This assignment provides insights into how different architectural choices impact the performance of text classification tasks using transformer-based models. By systematically comparing these models, we can identify the most effective approaches for specific applications, particularly in the realm of semantic classification using the SST-2 dataset.
+```
