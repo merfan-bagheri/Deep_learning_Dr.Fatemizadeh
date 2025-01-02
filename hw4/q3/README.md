@@ -1,4 +1,4 @@
-# Semantic Classification using SST-2 dataset with Encoder-Only models like GPT-2
+# Semantic Classification using SST-2 dataset with Decoder-Only models like GPT-2
 **Author**: Mohammad Baqeri
 ## Introduction
 
