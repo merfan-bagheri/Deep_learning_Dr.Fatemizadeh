@@ -1,4 +1,3 @@
-```markdown
 # LSTM Model for Language Modeling
 
 **Author**: Mohammad Baqeri
