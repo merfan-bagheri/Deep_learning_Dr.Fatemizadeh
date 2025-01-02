@@ -1,5 +1,5 @@
-# Model Comparison Assignment
-
+# Semantic Classification using SST-2 dataset with Encoder-Only models like GPT-2
+**Author**: Mohammad Baqeri
 ## Introduction
 
 In this assignment, we explore and compare various architectures based on the GPT-2 model for text classification tasks, specifically semantic classification using the SST-2 dataset. The goal is to analyze the performance of different configurations and enhancements made to the base model, focusing on training and validation accuracy, loss metrics, and confusion matrices.
